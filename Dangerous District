@@ -1,0 +1,25 @@
+import pandas as pd
+
+# Maine yahan Agra ke areas ka sample data khud hi bana diya hai
+# Aapko alag se koi CSV file download karne ki zarurat nahi padegi
+data = {
+    'Area': ['Sanjay Place', 'Khandari', 'Shahganj', 'Lohamandi', 'Tajganj'],
+    'Total_Cases': [150, 85, 200, 110, 95],
+    'High_Risk_Percent': [12, 8, 18, 10, 7]
+}
+
+df = pd.DataFrame(data)
+
+# Finding the most "Dangerous District/Area"
+# Logic: Jahan cases 100 se zyada hain aur risk 10% se zyada hai
+dangerous_areas = df[(df['Total_Cases'] > 100) & (df['High_Risk_Percent'] > 10)]
+
+print("--- Dangerous Areas Identification (Agra Region) ---")
+print(dangerous_areas)
+
+
+-- Query to filter high risk areas from database
+SELECT Area, Total_Cases 
+FROM HeartData 
+WHERE High_Risk_Percent > 10 
+ORDER BY Total_Cases DESC;
